@@ -37,6 +37,9 @@ input {
   font-size: 14px;
   transition: border-color 0.3s;
 }
+.input-space{
+  margin-bottom: 20px;
+}
 input:focus {
   outline: none;
   border-color: #f53939;

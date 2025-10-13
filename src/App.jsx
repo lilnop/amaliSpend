@@ -1,20 +1,20 @@
-import { useState } from "react";
+// import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import ForgotPassword from "./components/ForgotPassword";
+import ResetPassword from "./components/ResetPassword";
 
-function App() {  
-  const [showSignup, setShowSignup] = useState(true); 
-  const [showForgot, setShowForgot] = useState(false);
-
+function App() {
   // HANDLES THER LOGIN INFO
   const handleLogin = (loginData) => {
     if (loginData.email && loginData.password) {
-            alert(`Welcome back ${loginData.email}. This is a demo.`);
-        }else {
-            alert("Please enter both email and password.");
+      alert(`Welcome back ${loginData.email}. This is a demo.`);
+    } else {
+      alert("Please enter both email and password.");
     }
   }
+
   // HANDLES THE SIGNUP INFO
   const handleSignUp = (signUpData) => {
     alert(`SignedUp sucesfully ` )
@@ -22,26 +22,12 @@ function App() {
 
   return (
     <section className="container">
-      <h1>AmaliSpend</h1>
-      {/* TOGGLES BETWEEN LOGINPAGE,SIGNUP AND FORGETPASSWORD */}
-      {
-        showForgot ? 
-          <ForgotPassword setShowForgot={setShowForgot} />
-            :
-          (            
-            showSignup ?
-            (<Login 
-              onLogin={handleLogin} 
-              setShowSignup={setShowSignup} 
-              setShowForgot={setShowForgot}  
-            />)
-              :
-            (<SignUp  
-              onSignUp={handleSignUp} 
-              setShowSignup={setShowSignup} />)
-          )
-
-      }   
+      <Routes>
+        <Route path="/" element={<Login onLogin={handleLogin} />} />
+        <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+      </Routes>
     </section>
   )
 }

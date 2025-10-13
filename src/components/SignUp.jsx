@@ -1,16 +1,18 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function Signup({ onSignUp, setShowSignup }) {
+export default function Signup({ onSignUp }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setconfirmPassword] = useState("");
     const [errors, setErrors] = useState({});
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // ERROR VALIDATIONb
+        // ERROR VALIDATION
         const newErrors = {};
 
         if (!name.trim()) {
@@ -36,12 +38,14 @@ export default function Signup({ onSignUp, setShowSignup }) {
         if (Object.keys(newErrors).length === 0) {
             alert(`Account created successfully for ${name}! (This is a demo)`);
             onSignUp({ name, email, password, confirmPassword });
+            navigate("/"); // redirect after successful login
         }
 
     }
 
     return (
         <section >
+            <h1>AmaliSpend</h1>
             <p className='subtitle'>Signup to manage your expenses</p>
             <div className='form-group'>
                 <label htmlFor="name">Name</label>
@@ -94,11 +98,8 @@ export default function Signup({ onSignUp, setShowSignup }) {
             <button onClick={handleSubmit}>Sign Up</button>
 
             <div className='signup-link'>
-                Already have an account? <a href='#'
-                    onClick={(e) => {
-                        e.preventDefault();
-                        setShowSignup(true)
-                    }}>Login</a>
+                Already have an account? 
+                <Link to={"/"}> Login</Link>
             </div>
         </section>
     )

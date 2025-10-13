@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Login({onLogin,setShowSignup,setShowForgot}){
+export default function Login({onLogin}){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");     
 
@@ -12,6 +13,7 @@ export default function Login({onLogin,setShowSignup,setShowForgot}){
 
     return(
         <div>
+            <h1>AmaliSpend</h1>
             <p className='subtitle'>Login to manage your expenses</p>
             <div>
                 <label htmlFor="">Email</label>
@@ -34,17 +36,14 @@ export default function Login({onLogin,setShowSignup,setShowForgot}){
             </div>
 
             <div className="forgot-password">
-                <a href="#" onClick={(e) => {e.preventDefault(); 
-                    setShowForgot(true)}}>Forgot Password?</a>
+                <Link to={"/forgot-password"}> Forgot Password?</Link>
             </div>
 
             <button onClick={handleSubmit}>Login</button>
 
             <div className='signup-link'>
                 Don't have an account? 
-                <a href='#' 
-                    onClick={(e) => {e.preventDefault(); 
-                    setShowSignup(false)}}> Sign Up</a>
+                <Link to={"/signup"}> Sign Up</Link>
             </div> 
              
         </div>

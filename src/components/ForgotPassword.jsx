@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function ForgotPassword({ setShowForgot }) {
     const [email, setEmail] = useState("");
@@ -18,9 +19,11 @@ function ForgotPassword({ setShowForgot }) {
 
     return (
         <section>
+            <h1>Recover Account</h1>
             <p className="subtitle">Enter your recovery email address</p>
-            <div>
-                <input 
+            <form onSubmit={handleForgotPassword}>
+                <input
+                    className="input-space" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     type="email" 
@@ -28,12 +31,11 @@ function ForgotPassword({ setShowForgot }) {
                     name="email" 
                     id="email" 
                 />
-                <button onClick={handleForgotPassword}>Request Password</button>
-            </div>
+                <button>Request Password</button>
+            </form>
             <div className='signup-link'>
                 Already have an account?
-                <a href='#'
-                    onClick={() => setShowForgot(false)}> Log In</a>
+                <Link to={"/"}> Log In</Link>
             </div>
         </section>
     )
