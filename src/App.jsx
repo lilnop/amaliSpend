@@ -1,15 +1,19 @@
 // import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
+import Dashboard from "./components/Dashboard";
 
 function App() {
+  const navigate = useNavigate();
+
   // HANDLES THER LOGIN INFO
   const handleLogin = (loginData) => {
     if (loginData.email && loginData.password) {
       alert(`Welcome back ${loginData.email}. This is a demo.`);
+      navigate("/dashboard");
     } else {
       alert("Please enter both email and password.");
     }
@@ -27,6 +31,7 @@ function App() {
         <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/dashboard" element={<Dashboard />}></Route>
       </Routes>
     </section>
   )
