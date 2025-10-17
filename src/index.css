@@ -201,6 +201,9 @@ max-width: 1200px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+.expense-form .form-group label{
+  color: white;
+}
 
 .form-group input,
 .form-group select {
@@ -244,7 +247,6 @@ max-width: 1200px;
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  color: white;
   border: 2px solid white;
 }
 
@@ -502,6 +504,7 @@ nav {
   font-size: 3.5rem;
   margin-bottom: 1.5rem;
   line-height: 1.2;
+  color: #fff;
 }
 
 .hero p {

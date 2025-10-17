@@ -36,7 +36,7 @@ function ForgotPassword({ setShowForgot }) {
                 </form>
                 <div className='signup-link'>
                     Already have an account?
-                    <Link to={"/"}> Log In</Link>
+                    <Link to={"/login"}> Log In</Link>
                 </div>
             </article>
 

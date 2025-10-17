@@ -10,7 +10,7 @@ export default function AddExpense({ onAddExpense }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!description || !amount) return;
-        
+
         onAddExpense({
             id: Date.now(),
             description,
@@ -53,10 +53,10 @@ export default function AddExpense({ onAddExpense }) {
                     </div>
                     <div className="form-group">
                         <label htmlFor="category">Category</label>
-                        <select 
-                        onChange={(e) => setCategory(e.target.value)} 
-                        id="category"
-                        value={category}
+                        <select
+                            onChange={(e) => setCategory(e.target.value)}
+                            id="category"
+                            value={category}
                         >
                             <option value="food">Food</option>
                             <option value="transport">Transport</option>
@@ -70,8 +70,9 @@ export default function AddExpense({ onAddExpense }) {
                 </div>
                 <button
                     type="submit"
-                    className="btn-primary"
-                >Add Expense</button>
+                    className="btn-primary">
+                        Add Expense
+                </button>
             </form>
         </section>
 
