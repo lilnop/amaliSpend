@@ -18,25 +18,28 @@ function ForgotPassword({ setShowForgot }) {
     }
 
     return (
-        <section>
-            <h1>Recover Account</h1>
-            <p className="subtitle">Enter your recovery email address</p>
-            <form onSubmit={handleForgotPassword}>
-                <input
-                    className="input-space" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    type="email" 
-                    placeholder="Enter recovery email"
-                    name="email" 
-                    id="email" 
-                />
-                <button>Request Password</button>
-            </form>
-            <div className='signup-link'>
-                Already have an account?
-                <Link to={"/"}> Log In</Link>
-            </div>
+        <section className="container">
+            <article className="container-elements">
+                <h1>Recover Account</h1>
+                <p className="subtitle">Enter your recovery email address</p>
+                <form onSubmit={handleForgotPassword}>
+                    <input
+                        className="input-space"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        placeholder="Enter recovery email"
+                        name="email"
+                        id="email"
+                    />
+                    <button className="cta-button-login">Request Password</button>
+                </form>
+                <div className='signup-link'>
+                    Already have an account?
+                    <Link to={"/"}> Log In</Link>
+                </div>
+            </article>
+
         </section>
     )
 }

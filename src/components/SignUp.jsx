@@ -25,8 +25,8 @@ export default function Signup({ onSignUp }) {
         }
         if (!password) {
             newErrors.password = "Password is required";
-        } else if (password.length < 6) {
-            newErrors.password = "Password must be at least 6 characters";
+        } else if (password.length < 8) {
+            newErrors.password = "Password must be at least 8 characters";
         } else if (!/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
             newErrors.password = "Password must contain a number and an uppercase letter";
         }
@@ -44,63 +44,66 @@ export default function Signup({ onSignUp }) {
     }
 
     return (
-        <section >
-            <h1>AmaliSpend</h1>
-            <p className='subtitle'>Signup to manage your expenses</p>
-            <div className='form-group'>
-                <label htmlFor="name">Name</label>
-                <input
-                    value={name}
-                    id='name'
-                    type="text"
-                    placeholder='Enter full name'
-                    onChange={(e) => setName(e.target.value)}
-                />
-                {errors.name && <div className="error">{errors.name}</div>}
-            </div>
-            <div className='form-group'>
-                <label htmlFor="email">Email</label>
-                <input
-                    id='email'
-                    value={email}
-                    type="email"
-                    placeholder='Enter email'
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                {errors.email && <div className="error">{errors.email}</div>}
-            </div>
+        <section className='container'>
+            <article className="container-elements">
+                <h1>AmaliSpend</h1>
+                <p className='subtitle'>Signup to manage your expenses</p>
+                <div className='form-group'>
+                    <label htmlFor="name">Name</label>
+                    <input
+                        value={name}
+                        id='name'
+                        type="text"
+                        placeholder='Enter full name'
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    {errors.name && <div className="error">{errors.name}</div>}
+                </div>
+                <div className='form-group'>
+                    <label htmlFor="email">Email</label>
+                    <input
+                        id='email'
+                        value={email}
+                        type="email"
+                        placeholder='Enter email'
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    {errors.email && <div className="error">{errors.email}</div>}
+                </div>
 
-            <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                    name="password"
-                    id='password'
-                    type="password"
-                    value={password}
-                    placeholder='Enter password'
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                {errors.password && <div className="error">{errors.password}</div>}
-            </div>
-            <div className="form-group">
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input
-                    id='confirmPassword'
-                    type="password"
-                    name='confirmPassword'
-                    value={confirmPassword}
-                    placeholder='Confirm password'
-                    onChange={(e) => setconfirmPassword(e.target.value)}
-                />
-                {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
-            </div>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                        name="password"
+                        id='password'
+                        type="password"
+                        value={password}
+                        placeholder='Enter password'
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    {errors.password && <div className="error">{errors.password}</div>}
+                </div>
+                <div className="form-group">
+                    <label htmlFor="confirmPassword">Confirm Password</label>
+                    <input
+                        id='confirmPassword'
+                        type="password"
+                        name='confirmPassword'
+                        value={confirmPassword}
+                        placeholder='Confirm password'
+                        onChange={(e) => setconfirmPassword(e.target.value)}
+                    />
+                    {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
+                </div>
 
-            <button onClick={handleSubmit}>Sign Up</button>
+                <button className='cta-button-signup' onClick={handleSubmit}>Sign Up</button>
 
-            <div className='signup-link'>
-                Already have an account? 
-                <Link to={"/"}> Login</Link>
-            </div>
+                <div className='signup-link'>
+                    Already have an account?
+                    <Link to={"/login"}> Login</Link>
+                </div>
+            </article>
+
         </section>
     )
 

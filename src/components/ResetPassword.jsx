@@ -31,35 +31,38 @@ function ResetPassword() {
     }
 
     return (
-        <section>
-            <h1>Reset Password</h1>
-            <p className='subtitle'>Enter information to reset password</p>
-            <form onSubmit={handleResetPassword}>
-                <label htmlFor="">New Password</label>
-                <input
-                    className="input-space"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    type="password"
-                    placeholder="Enter new password"
-                    name="password"
-                    id="password"
-                />
-                {errors.password && <div className="error">{errors.password}</div>}
+        <section className="container">
+            <article className="container-elements">
+                <h1>Reset Password</h1>
+                <p className='subtitle'>Enter information to reset password</p>
+                <form className="form-group" onSubmit={handleResetPassword}>
+                    <label htmlFor="">New Password</label>
+                    <input
+                        className="input-space"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        type="password"
+                        placeholder="Enter new password"
+                        name="password"
+                        id="password"
+                    />
+                    {errors.password && <div className="error">{errors.password}</div>}
 
-                <label htmlFor="">Confirm Password</label>
-                <input
-                    className="input-space"
-                    value={confirmPassword}
-                    onChange={(e) => setconfirmPassword(e.target.value)}
-                    type="password"
-                    placeholder="Enter password confirmation"
-                    name="confirmPassword"
-                    id="confirmPassword"
-                />
-                {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
-                <button>Request Password</button>
-            </form>
+                    <label htmlFor="">Confirm Password</label>
+                    <input
+                        className="input-space"
+                        value={confirmPassword}
+                        onChange={(e) => setconfirmPassword(e.target.value)}
+                        type="password"
+                        placeholder="Enter password confirmation"
+                        name="confirmPassword"
+                        id="confirmPassword"
+                    />
+                    {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
+                    <button className="cta-button-login">Reset Password</button>
+                </form>
+            </article>
+
         </section>
     )
 }

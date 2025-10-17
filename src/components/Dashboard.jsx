@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import AddExpense from "./AddExpense";
 import Balance from "./Balance";
@@ -22,14 +22,17 @@ export default function Dashboard() {
 
     return (
         <section className="dashboard">
-            <Header />
-            <Balance expenses={expenses} />
-            <AddExpense onAddExpense={handleExpense} />
-            <Graph />
-            <ExpenseHistory
-                expenses={expenses}
-                onDelete={handleDelete}
-            />
+            <div className="dashboard-elements">
+                <Header />
+                <Balance expenses={expenses} />
+                <AddExpense onAddExpense={handleExpense} />
+                <Graph />
+                <ExpenseHistory
+                    expenses={expenses}
+                    onDelete={handleDelete}
+                />
+            </div>
+
         </section>
     )
 }
