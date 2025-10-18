@@ -6,6 +6,8 @@ export default function Signup({ onSignUp }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setconfirmPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
 
@@ -40,71 +42,149 @@ export default function Signup({ onSignUp }) {
             onSignUp({ name, email, password, confirmPassword });
             navigate("/"); // redirect after successful login
         }
-
     }
 
     return (
-        <section className='container'>
-            <article className="container-elements">
-                <h1>AmaliSpend</h1>
-                <p className='subtitle'>Signup to manage your expenses</p>
-                <div className='form-group'>
-                    <label htmlFor="name">Name</label>
-                    <input
-                        value={name}
-                        id='name'
-                        type="text"
-                        placeholder='Enter full name'
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    {errors.name && <div className="error">{errors.name}</div>}
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        id='email'
-                        value={email}
-                        type="email"
-                        placeholder='Enter email'
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    {errors.email && <div className="error">{errors.email}</div>}
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        name="password"
-                        id='password'
-                        type="password"
-                        value={password}
-                        placeholder='Enter password'
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    {errors.password && <div className="error">{errors.password}</div>}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="confirmPassword">Confirm Password</label>
-                    <input
-                        id='confirmPassword'
-                        type="password"
-                        name='confirmPassword'
-                        value={confirmPassword}
-                        placeholder='Confirm password'
-                        onChange={(e) => setconfirmPassword(e.target.value)}
-                    />
-                    {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
+        <div className='signup-wrapper'>
+            <div className='signup-container'>
+                {/* Left Side - Branding */}
+                <div className='signup-branding'>
+                    <div className='signup-branding-content'>
+                        <div className='signup-logo'>
+                            <span className='signup-logo-icon'>💰</span>
+                            <h1 className='signup-logo-text'>AmaliSpend</h1>
+                        </div>
+                        <p className='signup-tagline'>Join thousands of users who are taking control of their financial future</p>
+                        <div className='signup-features'>
+                            <div className='signup-feature-item'>
+                                <span className='signup-feature-icon'>✓</span>
+                                <span>Free to use forever</span>
+                            </div>
+                            <div className='signup-feature-item'>
+                                <span className='signup-feature-icon'>✓</span>
+                                <span>Secure data protection</span>
+                            </div>
+                            <div className='signup-feature-item'>
+                                <span className='signup-feature-icon'>✓</span>
+                                <span>Start tracking in seconds</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <button className='cta-button-signup' onClick={handleSubmit}>Sign Up</button>
+                {/* Right Side - Signup Form */}
+                <div className='signup-form-section'>
+                    <div className='signup-form-container'>
+                        <div className='signup-form-header'>
+                            <h2 className='signup-form-title'>Create Account</h2>
+                            <p className='signup-form-subtitle'>Join AmaliSpend and start tracking your expenses</p>
+                        </div>
 
-                <div className='signup-link'>
-                    Already have an account?
-                    <Link to={"/login"}> Login</Link>
+                        <form onSubmit={handleSubmit} className='signup-form'>
+                            <div className='signup-input-group'>
+                                <label htmlFor="name" className='signup-label'>
+                                    <span className='signup-label-icon'>👤</span>
+                                    Full Name
+                                </label>
+                                <input
+                                    id="name"
+                                    value={name}
+                                    type="text"
+                                    placeholder='Enter your full name'
+                                    onChange={(e) => setName(e.target.value)}
+                                    className='signup-input'
+                                    required
+                                />
+                                {errors.name && <div className="signup-error">{errors.name}</div>}
+                            </div>
+
+                            <div className='signup-input-group'>
+                                <label htmlFor="email" className='signup-label'>
+                                    <span className='signup-label-icon'>📧</span>
+                                    Email Address
+                                </label>
+                                <input
+                                    id="email"
+                                    value={email}
+                                    type="email"
+                                    placeholder='Enter your email'
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className='signup-input'
+                                    required
+                                />
+                                {errors.email && <div className="signup-error">{errors.email}</div>}
+                            </div>
+
+                            <div className='signup-input-group'>
+                                <label htmlFor="password" className='signup-label'>
+                                    <span className='signup-label-icon'>🔒</span>
+                                    Password
+                                </label>
+                                <div className='signup-password-wrapper'>
+                                    <input
+                                        id="password"
+                                        type={showPassword ? "text" : "password"}
+                                        value={password}
+                                        placeholder='Create a strong password'
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        className='signup-input'
+                                        required
+                                    />
+                                    <button
+                                        type="button"
+                                        className='signup-password-toggle'
+                                        onClick={() => setShowPassword(!showPassword)}
+                                    >
+                                        {showPassword ? '👁️' : '👁️‍🗨️'}
+                                    </button>
+                                </div>
+                                {errors.password && <div className="signup-error">{errors.password}</div>}
+                            </div>
+
+                            <div className='signup-input-group'>
+                                <label htmlFor="confirmPassword" className='signup-label'>
+                                    <span className='signup-label-icon'>🔒</span>
+                                    Confirm Password
+                                </label>
+                                <div className='signup-password-wrapper'>
+                                    <input
+                                        id="confirmPassword"
+                                        type={showConfirmPassword ? "text" : "password"}
+                                        value={confirmPassword}
+                                        placeholder='Confirm your password'
+                                        onChange={(e) => setconfirmPassword(e.target.value)}
+                                        className='signup-input'
+                                        required
+                                    />
+                                    <button
+                                        type="button"
+                                        className='signup-password-toggle'
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                    >
+                                        {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                                    </button>
+                                </div>
+                                {errors.confirmPassword && <div className="signup-error">{errors.confirmPassword}</div>}
+                            </div>
+
+                            <button type='submit' className='signup-submit-btn'>
+                                Create Account
+                            </button>
+                        </form>
+
+                        <div className='signup-divider'>
+                            <span className='signup-divider-text'>or</span>
+                        </div>
+
+                        <div className='signup-login-prompt'>
+                            Already have an account?
+                            <Link to={"/login"} className='signup-login-link'>
+                                Login Here
+                            </Link>
+                        </div>
+                    </div>
                 </div>
-            </article>
-
-        </section>
+            </div>
+        </div>
     )
-
 }
