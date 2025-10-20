@@ -1,3 +1,5 @@
+import { Pie, PieChart } from 'recharts';
+
 export default function Graph({ expenses }) {
     // Calculate category totals
     const categoryTotals = expenses.reduce((acc, exp) => {

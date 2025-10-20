@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 :root {
@@ -28,6 +29,7 @@ body {
   /* line-height: 1.6; */
   /* color: #333; */
   /* overflow-x: hidden; */
+  
 }
 
 .container {
@@ -705,6 +707,7 @@ nav {
 
 .cta-button {
   margin-left: 10px;
+  margin: 1px;
   background: #FF6B35;
   color: white;
   padding: 0.8rem 2rem;
@@ -1625,6 +1628,10 @@ footer {
 
   .signup-form-title {
     font-size: 1.75rem;
+  }
+  .cta-button {
+    margin-left: 10px;
+    margin: 1px;
   }
 }
 

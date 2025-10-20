@@ -18,7 +18,7 @@ export default function Login({ onLogin }) {
                 {/* Left Side - Branding */}
                 <div className='login-branding'>
                     <div className='login-branding-content'>
-                        <div className='login-logo'>
+                        <div className='login-logo' title="Back to the Homepage">
                             <span className='login-logo-icon'>💰</span>
                             <Link to={"/"}>
                                 <h1 className='login-logo-text'>AmaliSpend</h1>

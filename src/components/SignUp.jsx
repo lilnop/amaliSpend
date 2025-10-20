@@ -50,7 +50,7 @@ export default function Signup({ onSignUp }) {
                 {/* Left Side - Branding */}
                 <div className='signup-branding'>
                     <div className='signup-branding-content'>
-                        <div className='signup-logo'>
+                        <div className='signup-logo' title="Back to the Homepage">
                             <span className='signup-logo-icon'>💰</span>
                             <Link to={"/"}>
                                 <h1 className='signup-logo-text'>AmaliSpend</h1>

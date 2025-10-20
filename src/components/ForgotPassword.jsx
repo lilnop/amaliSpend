@@ -8,16 +8,16 @@ function ForgotPassword({ setShowForgot }) {
 
     const handleForgotPassword = (e) => {
         e.preventDefault();
-        
+
         // Reset errors
         setErrors({});
-        
+
         // Validation
         if (!email) {
             setErrors({ email: "Email is required" });
             return;
         }
-        
+
         if (!/\S+@\S+\.\S+/.test(email)) {
             setErrors({ email: "Please enter a valid email address" });
             return;
@@ -38,10 +38,13 @@ function ForgotPassword({ setShowForgot }) {
                     {/* Left Side - Branding */}
                     <div className='forgot-branding'>
                         <div className='forgot-branding-content'>
-                            <div className='forgot-logo'>
-                                <span className='forgot-logo-icon'>🔐</span>
-                                <h1 className='forgot-logo-text'>AmaliSpend</h1>
-                            </div>
+                            <Link to={"/"}>
+                                <div className='forgot-logo' title="Back to the Homepage">
+                                    <span className='forgot-logo-icon'>🔐</span>
+                                    <h1 className='forgot-logo-text'>AmaliSpend</h1>
+                                </div>
+                            </Link>
+
                             <p className='forgot-tagline'>Your account security is our priority</p>
                             <div className='forgot-features'>
                                 <div className='forgot-feature-item'>
@@ -70,17 +73,19 @@ function ForgotPassword({ setShowForgot }) {
                                     We've sent a password reset link to <strong>{email}</strong>
                                 </p>
                                 <p className='forgot-success-instructions'>
-                                    Please check your email and click the link to reset your password. 
+                                    Please check your email and click the link to reset your password.
                                     The link will expire in 15 minutes.
                                 </p>
-                                <div className='forgot-actions'>
-                                    <button 
-                                        onClick={() => setShowForgot(false)}
-                                        className='forgot-back-btn'
-                                    >
-                                        Back to Login
-                                    </button>
-                                </div>
+                                <Link to={"/login"}>
+                                    <div className='forgot-actions'>
+                                        <button
+                                            onClick={() => setShowForgot(false)}
+                                            className='forgot-back-btn'
+                                        >
+                                            Back to Login
+                                        </button>
+                                    </div>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -95,10 +100,12 @@ function ForgotPassword({ setShowForgot }) {
                 {/* Left Side - Branding */}
                 <div className='forgot-branding'>
                     <div className='forgot-branding-content'>
-                        <div className='forgot-logo'>
-                            <span className='forgot-logo-icon'>🔐</span>
-                            <h1 className='forgot-logo-text'>AmaliSpend</h1>
-                        </div>
+                        <Link to={"/"}>
+                            <div className='forgot-logo' title="Back to the Homepage">
+                                <span className='forgot-logo-icon'>🔐</span>
+                                <h1 className='forgot-logo-text'>AmaliSpend</h1>
+                            </div>
+                        </Link>
                         <p className='forgot-tagline'>Don't worry, we'll help you get back into your account</p>
                         <div className='forgot-features'>
                             <div className='forgot-feature-item'>

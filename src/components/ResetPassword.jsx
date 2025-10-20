@@ -47,11 +47,13 @@ function ResetPassword() {
                 <div className='reset-container'>
                     {/* Left Side - Branding */}
                     <div className='reset-branding'>
-                        <div className='reset-branding-content'>
-                            <div className='reset-logo'>
-                                <span className='reset-logo-icon'>🔐</span>
-                                <h1 className='reset-logo-text'>AmaliSpend</h1>
-                            </div>
+                        <div className='reset-branding-content' >
+                            <Link to={"/"}>
+                                <div className='reset-logo' title="Back to the Homepage">
+                                    <span className='reset-logo-icon'>🔐</span>
+                                    <h1 className='reset-logo-text'>AmaliSpend</h1>
+                                </div>
+                            </Link>
                             <p className='reset-tagline'>Your account security is our priority</p>
                             <div className='reset-features'>
                                 <div className='reset-feature-item'>
@@ -101,10 +103,13 @@ function ResetPassword() {
                 {/* Left Side - Branding */}
                 <div className='reset-branding'>
                     <div className='reset-branding-content'>
-                        <div className='reset-logo'>
-                            <span className='reset-logo-icon'>🔐</span>
-                            <h1 className='reset-logo-text'>AmaliSpend</h1>
-                        </div>
+                        <Link to={"/"}>
+                            <div className='reset-logo' title="Back to the Homepage">
+                                <span className='reset-logo-icon'>🔐</span>
+                                <h1 className='reset-logo-text'>AmaliSpend</h1>
+                            </div>
+                        </Link>
+
                         <p className='reset-tagline'>Create a strong new password to secure your account</p>
                         <div className='reset-features'>
                             <div className='reset-feature-item'>
