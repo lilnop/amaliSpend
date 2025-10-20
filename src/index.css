@@ -704,6 +704,7 @@ nav {
 }
 
 .cta-button {
+  margin-left: 10px;
   background: #FF6B35;
   color: white;
   padding: 0.8rem 2rem;
@@ -1623,6 +1624,721 @@ footer {
   }
 
   .signup-form-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* FORGOT PASSWORD PAGE - MODERN DESIGN */
+.forgot-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.forgot-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1200px;
+  width: 100%;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  min-height: 600px;
+}
+
+/* Left Side - Branding */
+.forgot-branding {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  padding: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.forgot-branding::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.forgot-branding::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+}
+
+.forgot-branding-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.forgot-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.forgot-logo-icon {
+  font-size: 3.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.forgot-logo-text {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin: 0;
+  color: white;
+  text-align: left;
+}
+
+.forgot-tagline {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+}
+
+.forgot-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.forgot-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+}
+
+.forgot-feature-icon {
+  background: rgba(255, 255, 255, 0.2);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Right Side - Form */
+.forgot-form-section {
+  padding: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.forgot-form-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.forgot-form-header {
+  margin-bottom: 2.5rem;
+}
+
+.forgot-form-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 0 0 0.5rem 0;
+}
+
+.forgot-form-subtitle {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.forgot-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.forgot-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.forgot-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.forgot-label-icon {
+  font-size: 1rem;
+}
+
+.forgot-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background: var(--bg-light);
+}
+
+.forgot-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  background: white;
+}
+
+.forgot-error {
+  color: #dc2626;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.forgot-submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 0.5rem;
+}
+
+.forgot-submit-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.forgot-submit-btn:active {
+  transform: translateY(0);
+}
+
+.forgot-divider {
+  position: relative;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.forgot-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.forgot-divider-text {
+  position: relative;
+  background: white;
+  padding: 0 1rem;
+  color: var(--text-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.forgot-login-prompt {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.forgot-login-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  transition: color 0.3s;
+}
+
+.forgot-login-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* Success States */
+.forgot-success-content {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.forgot-success-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.forgot-success-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 0 0 1rem 0;
+}
+
+.forgot-success-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-dark);
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.forgot-success-instructions {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+}
+
+.forgot-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.forgot-back-btn {
+  padding: 0.875rem 2rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.forgot-back-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* RESET PASSWORD PAGE - MODERN DESIGN */
+.reset-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.reset-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1200px;
+  width: 100%;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  min-height: 600px;
+}
+
+/* Left Side - Branding */
+.reset-branding {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  padding: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.reset-branding::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.reset-branding::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+}
+
+.reset-branding-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.reset-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.reset-logo-icon {
+  font-size: 3.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.reset-logo-text {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin: 0;
+  color: white;
+  text-align: left;
+}
+
+.reset-tagline {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  opacity: 0.95;
+}
+
+.reset-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.reset-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+}
+
+.reset-feature-icon {
+  background: rgba(255, 255, 255, 0.2);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Right Side - Form */
+.reset-form-section {
+  padding: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset-form-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.reset-form-header {
+  margin-bottom: 2.5rem;
+}
+
+.reset-form-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 0 0 0.5rem 0;
+}
+
+.reset-form-subtitle {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.reset-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reset-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.reset-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.reset-label-icon {
+  font-size: 1rem;
+}
+
+.reset-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background: var(--bg-light);
+}
+
+.reset-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  background: white;
+}
+
+.reset-password-wrapper {
+  position: relative;
+}
+
+.reset-password-toggle {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0.25rem;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.reset-password-toggle:hover {
+  opacity: 1;
+}
+
+.reset-error {
+  color: #dc2626;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.reset-submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 0.5rem;
+}
+
+.reset-submit-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.reset-submit-btn:active {
+  transform: translateY(0);
+}
+
+.reset-divider {
+  position: relative;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.reset-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border-color);
+}
+
+.reset-divider-text {
+  position: relative;
+  background: white;
+  padding: 0 1rem;
+  color: var(--text-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.reset-login-prompt {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.reset-login-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  transition: color 0.3s;
+}
+
+.reset-login-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* Reset Success States */
+.reset-success-content {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.reset-success-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.reset-success-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin: 0 0 1rem 0;
+}
+
+.reset-success-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-dark);
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.reset-success-instructions {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin: 0 0 2rem 0;
+}
+
+.reset-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.reset-login-btn {
+  padding: 0.875rem 2rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.reset-login-btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Responsive Design for Forgot/Reset Pages */
+@media (max-width: 968px) {
+  .forgot-container,
+  .reset-container {
+    grid-template-columns: 1fr;
+  }
+
+  .forgot-branding,
+  .reset-branding {
+    display: none;
+  }
+
+  .forgot-form-section,
+  .reset-form-section {
+    padding: 3rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .forgot-wrapper,
+  .reset-wrapper {
+    padding: 1rem;
+  }
+
+  .forgot-form-section,
+  .reset-form-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .forgot-form-title,
+  .reset-form-title {
     font-size: 1.75rem;
   }
 }

@@ -52,7 +52,9 @@ export default function Signup({ onSignUp }) {
                     <div className='signup-branding-content'>
                         <div className='signup-logo'>
                             <span className='signup-logo-icon'>💰</span>
-                            <h1 className='signup-logo-text'>AmaliSpend</h1>
+                            <Link to={"/"}>
+                                <h1 className='signup-logo-text'>AmaliSpend</h1>
+                            </Link>
                         </div>
                         <p className='signup-tagline'>Join thousands of users who are taking control of their financial future</p>
                         <div className='signup-features'>

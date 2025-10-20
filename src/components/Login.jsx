@@ -20,7 +20,10 @@ export default function Login({ onLogin }) {
                     <div className='login-branding-content'>
                         <div className='login-logo'>
                             <span className='login-logo-icon'>💰</span>
-                            <h1 className='login-logo-text'>AmaliSpend</h1>
+                            <Link to={"/"}>
+                                <h1 className='login-logo-text'>AmaliSpend</h1>
+
+                            </Link>
                         </div>
                         <p className='login-tagline'>Track your expenses with ease and take control of your financial future</p>
                         <div className='login-features'>
