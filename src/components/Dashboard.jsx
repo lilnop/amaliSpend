@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import AddExpense from "./AddExpense";
 import Balance from "./Balance";
@@ -7,32 +8,91 @@ import Graph from "./Graph";
 import Header from "./Header";
 
 export default function Dashboard() {
-    const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    // ADD EXPENSE HANDLER
-    const handleExpense = (newExpense) => {
-        setExpenses((prev) => [newExpense, ...prev]);
+  // ====== FETCH EXPENSES ON LOAD ======
+  useEffect(() => {
+    const fetchExpenses = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          setError("No token found. Please log in again.");
+          setLoading(false);
+          return;
+        }
 
+        const res = await axios.get("/api/expenses", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        setExpenses(res.data);
+      } catch (err) {
+        console.error(err);
+        setError(err.response?.data?.error || "Failed to load expenses.");
+      } finally {
+        setLoading(false);
+      }
     };
 
-    // DELETE EXPENSE HANDLER
-    const handleDelete = (id) => {
-        setExpenses((prev) => prev.filter((item) => item.id !== id));
-    };
+    fetchExpenses();
+  }, []);
 
-    return (
-        <section className="dashboard">
-            <div className="dashboard-elements">
-                <Header />
-                <Balance expenses={expenses} />
-                <AddExpense onAddExpense={handleExpense} />
-                <Graph />
-                <ExpenseHistory
-                    expenses={expenses}
-                    onDelete={handleDelete}
-                />
-            </div>
+  // ====== ADD EXPENSE HANDLER ======
+  const handleExpense = async (newExpense) => {
+   try {
+     const token = localStorage.getItem("token");
 
-        </section>
-    )
+    // 1️⃣ Create new expense in the backend
+     await axios.post("/api/expenses", newExpense, {
+      headers: { Authorization: `Bearer ${token}` },
+     });
+
+    // 2️⃣ Immediately re-fetch the updated list
+     const refreshed = await axios.get("/api/expenses", {
+      headers: { Authorization: `Bearer ${token}` },
+     });
+
+    // 3️⃣ Update the state to reflect backend data
+     setExpenses(refreshed.data);
+
+    } catch (err) {
+    console.error(err);
+    alert(err.response?.data?.error || "Failed to add expense.");
+    }
+  };
+
+
+  // ====== DELETE EXPENSE HANDLER ======
+  const handleDelete = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(`/api/expenses/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Remove deleted expense from UI
+      setExpenses((prev) => prev.filter((item) => item.id !== id));
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.error || "Failed to delete expense.");
+    }
+  };
+
+  // ====== RENDER UI ======
+  if (loading) return <p>Loading expenses...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
+
+  return (
+    <section className="dashboard">
+      <div className="dashboard-elements">
+        <Header />
+        <Balance expenses={expenses} />
+        <AddExpense onAddExpense={handleExpense} />
+        <Graph expenses={expenses} />
+        <ExpenseHistory expenses={expenses} onDelete={handleDelete} />
+      </div>
+    </section>
+  );
 }
