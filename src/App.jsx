@@ -6,23 +6,46 @@ import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import Dashboard from "./components/Dashboard";
 import Landing from "./components/Landing";
+import axios from "axios"; // use axios directly instead of missing ./api
 
 function App() {
   const navigate = useNavigate();
 
-  // HANDLES THER LOGIN INFO
-  const handleLogin = (loginData) => {
-    if (loginData.email && loginData.password) {
-      alert(`Welcome back ${loginData.email}. This is a demo.`);
+  // HANDLES THE LOGIN INFO
+  const handleLogin = async (loginData) => {
+    try {
+      const res = await axios.post("/api/login", {
+        email: loginData.email,
+        password: loginData.password,
+      });
+
+      // Save token (optional)
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("username", res.data.username);
+
+      alert(`Welcome back ${res.data.username}!`);
       navigate("/dashboard");
-    } else {
-      alert("Please enter both email and password.");
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.error || "Login failed. Please try again.");
     }
-  }
+  };
 
   // HANDLES THE SIGNUP INFO
-  const handleSignUp = (signUpData) => {
-    alert(`SignedUp sucesfully ` )
+  const handleSignUp = async (signUpData) => {
+    try {
+      const res = await axios.post("/api/register", {
+        username: signUpData.username,
+        email: signUpData.email,
+        password: signUpData.password,
+      });
+
+      alert(res.data.message || "Signed up successfully!");
+      navigate("/login");
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.error || "Sign-up failed. Please try again.");
+    }
   }
 
   return (
@@ -41,3 +64,5 @@ function App() {
 }
 
 export default App;
+
+
