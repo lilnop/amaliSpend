@@ -41,28 +41,27 @@ export default function Dashboard() {
 
   // ====== ADD EXPENSE HANDLER ======
   const handleExpense = async (newExpense) => {
-   try {
-     const token = localStorage.getItem("token");
+    try {
+      const token = localStorage.getItem("token");
 
-    // 1️⃣ Create new expense in the backend
-     await axios.post("/api/expenses", newExpense, {
-      headers: { Authorization: `Bearer ${token}` },
-     });
+      // Create new expense in the backend
+      await axios.post("/api/expenses", newExpense, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-    // 2️⃣ Immediately re-fetch the updated list
-     const refreshed = await axios.get("/api/expenses", {
-      headers: { Authorization: `Bearer ${token}` },
-     });
+      // Immediately re-fetch the updated list
+      const refreshed = await axios.get("/api/expenses", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-    // 3️⃣ Update the state to reflect backend data
-     setExpenses(refreshed.data);
+      // Update the state to reflect backend data
+      setExpenses(refreshed.data);
 
     } catch (err) {
-    console.error(err);
-    alert(err.response?.data?.error || "Failed to add expense.");
+      console.error(err);
+      alert(err.response?.data?.error || "Failed to add expense.");
     }
   };
-
 
   // ====== DELETE EXPENSE HANDLER ======
   const handleDelete = async (id) => {
@@ -85,14 +84,24 @@ export default function Dashboard() {
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
-    <section className="dashboard">
-      <div className="dashboard-elements">
+    <div className="dashboard-wrapper">
+      <div className="dashboard-container">
         <Header />
-        <Balance expenses={expenses} />
-        <AddExpense onAddExpense={handleExpense} />
-        <Graph expenses={expenses} />
-        <ExpenseHistory expenses={expenses} onDelete={handleDelete} />
+        <div className="dashboard-grid">
+          <div className="dashboard-section balance-section">
+            <Balance expenses={expenses} />
+          </div>
+          <div className="dashboard-section form-section">
+            <AddExpense onAddExpense={handleExpense} />
+          </div>
+          <div className="dashboard-section graph-section">
+            <Graph expenses={expenses} />
+          </div>
+          <div className="dashboard-section history-section">
+            <ExpenseHistory expenses={expenses} onDelete={handleDelete} />
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

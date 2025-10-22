@@ -1,110 +1,204 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Signup({ onSignUp }) {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setconfirmPassword] = useState("");
-    const [errors, setErrors] = useState({});
-    const navigate = useNavigate();
+export default function Signup() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        // ERROR VALIDATION
-        const newErrors = {};
+    const newErrors = {};
+    if (!name.trim()) newErrors.name = "Name cannot be empty";
+    if (!email) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(email))
+      newErrors.email = "Please enter a valid email address";
+    if (!password) newErrors.password = "Password is required";
+    else if (password.length < 8)
+      newErrors.password = "Password must be at least 8 characters";
+    else if (!/[A-Z]/.test(password) || !/[0-9]/.test(password))
+      newErrors.password =
+        "Password must contain a number and an uppercase letter";
+    if (password !== confirmPassword)
+      newErrors.confirmPassword = "Passwords do not match";
 
-        if (!name.trim()) {
-            newErrors.name = "Name cannot be empty";
-        }
-        if (!email) {
-            newErrors.email = "Email is required";
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
-            newErrors.email = "Please enter a valid email address";
-        }
-        if (!password) {
-            newErrors.password = "Password is required";
-        } else if (password.length < 8) {
-            newErrors.password = "Password must be at least 8 characters";
-        } else if (!/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
-            newErrors.password = "Password must contain a number and an uppercase letter";
-        }
-        if (password !== confirmPassword) {
-            newErrors.confirmPassword = "Passwords do not match";
-        }
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) return;
 
-        setErrors(newErrors);
-        if (Object.keys(newErrors).length === 0) {
-            alert(`Account created successfully for ${name}! (This is a demo)`);
-            onSignUp({ name, email, password, confirmPassword });
-            navigate("/"); // redirect after successful login
-        }
+    try {
+      const res = await fetch("http://localhost:5000/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: name,
+          email,
+          password,
+        }),
+      });
 
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("✅ Account created successfully! You can now log in.");
+        navigate("/login");
+      } else {
+        alert(data.error || "Registration failed. Please try again.");
+      }
+    } catch (err) {
+      console.error("Signup error:", err);
+      alert("Unable to connect to the server. Please try again later.");
     }
+  };
 
-    return (
-        <section className='container'>
-            <article className="container-elements">
-                <h1>AmaliSpend</h1>
-                <p className='subtitle'>Signup to manage your expenses</p>
-                <div className='form-group'>
-                    <label htmlFor="name">Name</label>
-                    <input
-                        value={name}
-                        id='name'
-                        type="text"
-                        placeholder='Enter full name'
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    {errors.name && <div className="error">{errors.name}</div>}
+  return (
+    <div className='signup-wrapper'>
+      <div className='signup-container'>
+        {/* Left Side - Branding */}
+        <div className='signup-branding'>
+          <div className='signup-branding-content'>
+            <div className='signup-logo' title="Back to the Homepage">
+              <span className='signup-logo-icon'>💰</span>
+              <Link to={"/"}>
+                <h1 className='signup-logo-text'>AmaliSpend</h1>
+              </Link>
+            </div>
+            <p className='signup-tagline'>Join thousands of users who are taking control of their financial future</p>
+            <div className='signup-features'>
+              <div className='signup-feature-item'>
+                <span className='signup-feature-icon'>✓</span>
+                <span>Free to use forever</span>
+              </div>
+              <div className='signup-feature-item'>
+                <span className='signup-feature-icon'>✓</span>
+                <span>Secure data protection</span>
+              </div>
+              <div className='signup-feature-item'>
+                <span className='signup-feature-icon'>✓</span>
+                <span>Start tracking in seconds</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side - Signup Form */}
+        <div className='signup-form-section'>
+          <div className='signup-form-container'>
+            <div className='signup-form-header'>
+              <h2 className='signup-form-title'>Create Account</h2>
+              <p className='signup-form-subtitle'>Join AmaliSpend and start tracking your expenses</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className='signup-form'>
+              <div className='signup-input-group'>
+                <label htmlFor="name" className='signup-label'>
+                  <span className='signup-label-icon'>👤</span>
+                  Full Name
+                </label>
+                <input
+                  id="name"
+                  value={name}
+                  type="text"
+                  placeholder='Enter your full name'
+                  onChange={(e) => setName(e.target.value)}
+                  className='signup-input'
+                  required
+                />
+                {errors.name && <div className="signup-error">{errors.name}</div>}
+              </div>
+
+              <div className='signup-input-group'>
+                <label htmlFor="email" className='signup-label'>
+                  <span className='signup-label-icon'>📧</span>
+                  Email Address
+                </label>
+                <input
+                  id="email"
+                  value={email}
+                  type="email"
+                  placeholder='Enter your email'
+                  onChange={(e) => setEmail(e.target.value)}
+                  className='signup-input'
+                  required
+                />
+                {errors.email && <div className="signup-error">{errors.email}</div>}
+              </div>
+
+              <div className='signup-input-group'>
+                <label htmlFor="password" className='signup-label'>
+                  <span className='signup-label-icon'>🔒</span>
+                  Password
+                </label>
+                <div className='signup-password-wrapper'>
+                  <input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    placeholder='Create a strong password'
+                    onChange={(e) => setPassword(e.target.value)}
+                    className='signup-input'
+                    required
+                  />
+                  <button
+                    type="button"
+                    className='signup-password-toggle'
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? '👁️' : '👁️‍🗨️'}
+                  </button>
                 </div>
-                <div className='form-group'>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        id='email'
-                        value={email}
-                        type="email"
-                        placeholder='Enter email'
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                    {errors.email && <div className="error">{errors.email}</div>}
+                {errors.password && <div className="signup-error">{errors.password}</div>}
+              </div>
+
+              <div className='signup-input-group'>
+                <label htmlFor="confirmPassword" className='signup-label'>
+                  <span className='signup-label-icon'>🔒</span>
+                  Confirm Password
+                </label>
+                <div className='signup-password-wrapper'>
+                  <input
+                    id="confirmPassword"
+                    type={showConfirmPassword ? "text" : "password"}
+                    value={confirmPassword}
+                    placeholder='Confirm your password'
+                    onChange={(e) => setconfirmPassword(e.target.value)}
+                    className='signup-input'
+                    required
+                  />
+                  <button
+                    type="button"
+                    className='signup-password-toggle'
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
+                  </button>
                 </div>
+                {errors.confirmPassword && <div className="signup-error">{errors.confirmPassword}</div>}
+              </div>
 
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        name="password"
-                        id='password'
-                        type="password"
-                        value={password}
-                        placeholder='Enter password'
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    {errors.password && <div className="error">{errors.password}</div>}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="confirmPassword">Confirm Password</label>
-                    <input
-                        id='confirmPassword'
-                        type="password"
-                        name='confirmPassword'
-                        value={confirmPassword}
-                        placeholder='Confirm password'
-                        onChange={(e) => setconfirmPassword(e.target.value)}
-                    />
-                    {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
-                </div>
+              <button type='submit' className='signup-submit-btn'>
+                Create Account
+              </button>
+            </form>
 
-                <button className='cta-button-signup' onClick={handleSubmit}>Sign Up</button>
+            <div className='signup-divider'>
+              <span className='signup-divider-text'>or</span>
+            </div>
 
-                <div className='signup-link'>
-                    Already have an account?
-                    <Link to={"/login"}> Login</Link>
-                </div>
-            </article>
-
-        </section>
-    )
-
+            <div className='signup-login-prompt'>
+              Already have an account?
+              <Link to={"/login"} className='signup-login-link'>
+                Login Here
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }

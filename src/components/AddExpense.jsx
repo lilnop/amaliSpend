@@ -21,8 +21,7 @@ export default function AddExpense({ onAddExpense }) {
 
     try {
       setLoading(true);
-      await onAddExpense(newExpense); // 🔗 Call the handler from Dashboard
-      // ✅ Clear inputs after successful add
+      await onAddExpense(newExpense);
       setCategory("");
       setAmount("");
       setDescription("");
@@ -35,41 +34,52 @@ export default function AddExpense({ onAddExpense }) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-3 p-4 bg-white rounded-2xl shadow"
-    >
-      <h3 className="text-lg font-semibold text-gray-800">Add Expense</h3>
+    <form onSubmit={handleSubmit} className="expense-form">
+      <h2>Add New Expense</h2>
 
-      <input
-        type="text"
-        placeholder="Category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        className="p-2 border rounded-lg"
-      />
+      <div className="form-group">
+        <label>Category</label>
+        <select
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          required
+        >
+          <option value="">Select Category</option>
+          <option value="food">Food</option>
+          <option value="transport">Transport</option>
+          <option value="utilities">Utilities</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="healthcare">Healthcare</option>
+          <option value="shopping">Shopping</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
 
-      <input
-        type="number"
-        placeholder="Amount"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        className="p-2 border rounded-lg"
-      />
+      <div className="form-row">
+        <div className="form-group">
+          <label>Amount</label>
+          <input
+            type="number"
+            placeholder="0.00"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            step="0.01"
+            required
+          />
+        </div>
 
-      <input
-        type="text"
-        placeholder="Description (optional)"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        className="p-2 border rounded-lg"
-      />
+        <div className="form-group">
+          <label>Description</label>
+          <input
+            type="text"
+            placeholder="Optional"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+      </div>
 
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
-      >
+      <button type="submit" disabled={loading} className="btn-primary">
         {loading ? "Adding..." : "Add Expense"}
       </button>
     </form>
