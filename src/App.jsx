@@ -6,7 +6,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import Dashboard from "./components/Dashboard";
 import Landing from "./components/Landing";
-// import Test from "./components/Test";
+import Test from "./components/Test";
 
 function App() {
   const navigate = useNavigate();
@@ -27,7 +27,6 @@ function App() {
   }
 
   return (
-    // <section className="container">
     <>
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -36,7 +35,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/dashboard" element={<Dashboard />}></Route>
-        {/* <Route path="/test" element={<Test />}></Route> */}
+        <Route path="/test" element={<Test />}></Route>
 
       </Routes>
     </>
