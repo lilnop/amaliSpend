@@ -590,3 +590,65 @@
 .sidebar-menu{
   display: block;
 }
+
+/* ========== BUDGETS PAGE ========== */
+.budget-bar-container {
+  width: 100%;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.budget-input {
+  width: 100%;
+  border: 2px solid #E5E5E5;
+  border-radius: 10px;
+  padding: 0.6rem;
+  font-size: 0.9rem;
+  text-align: right;
+  color: #333;
+  margin-bottom: 0.3rem;
+  transition: border-color 0.3s;
+}
+
+.budget-input:focus {
+  outline: none;
+  border-color: #FF6B35;
+}
+/* ======== TOTAL BUDGET PAGE ======== */
+.budget-input-section {
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+.budget-input-section label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.budget-input {
+  width: 100%;
+  border: 2px solid #E5E5E5;
+  border-radius: 10px;
+  padding: 0.7rem;
+  font-size: 1rem;
+  text-align: right;
+  color: #333;
+  transition: border-color 0.3s;
+}
+
+.budget-input:focus {
+  outline: none;
+  border-color: #FF6B35;
+}
+
+.budget-progress-section {
+  margin-top: 2rem;
+  max-width: 500px;
+}
+
+.budget-status {
+  text-align: left;
+}

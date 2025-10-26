@@ -5,11 +5,12 @@ import StatsCard from './ExpenseStats';
 import CategoryCard from './CategoryCard';
 import TransactionItem from './TransactionItem';
 import AddExpenseModal from './AddExpenseModal';
+import { useExpenses } from './ExpenseContext';
 import './Dashboard.css';
 
 const Dashboard2 = () => {
-  // Main application state
-  const [expenses, setExpenses] = useState([]);
+  // // Main application state
+  const { expenses, setExpenses } = useExpenses();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Calculate statistics from expenses array
@@ -257,3 +258,4 @@ const Dashboard2 = () => {
 };
 
 export default Dashboard2;
+

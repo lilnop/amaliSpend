@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Sidebar({ onLogout }) {
     return (
@@ -9,10 +10,13 @@ export default function Sidebar({ onLogout }) {
             </div>
 
             <nav className="sidebar-menu">
-                <a href="#" className="menu-item active">
-                    <span className="menu-icon">📊</span>
-                    <span>Dashboard</span>
-                </a>
+                <Link to={"/dashboard"}>
+                    <a href="#" className="menu-item active">
+                        <span className="menu-icon">📊</span>
+                        <span>Dashboard</span>
+                    </a>
+                </Link>
+
                 <a href="#" className="menu-item">
                     <span className="menu-icon">💰</span>
                     <span>Transactions</span>
@@ -21,10 +25,14 @@ export default function Sidebar({ onLogout }) {
                     <span className="menu-icon">📈</span>
                     <span>Analytics</span>
                 </a>
-                <a href="#" className="menu-item">
-                    <span className="menu-icon">🎯</span>
-                    <span>Budgets</span>
-                </a>
+                <Link to={"/budgets"}>
+                    <a href="#" className="menu-item">
+                        <span className="menu-icon">🎯</span>
+                        <span>Budgets</span>
+                    </a>
+                </Link>
+
+
             </nav>
 
             <div className="sidebar-footer">

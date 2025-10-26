@@ -7,6 +7,9 @@ import ResetPassword from "./components/ResetPassword";
 import Dashboard from "./components/Dashboard";
 import Landing from "./components/Landing";
 import Test from "./components/Test";
+import Analytics from "./components/Analytics";
+import Budgets from "./components/Budgets";
+import { ExpenseProvider } from "./components/ExpenseContext";
 
 function App() {
   const navigate = useNavigate();
@@ -28,16 +31,19 @@ function App() {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/test" element={<Test />}></Route>
-
-      </Routes>
+      <ExpenseProvider >
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/test" element={<Test />}></Route>
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/budgets" element={<Budgets />} />
+        </Routes>
+      </ExpenseProvider >
     </>
   )
 }
